@@ -4,9 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.1] - 2018-09-14
+## [0.0.3] - 2018-09-26
 
-First commit, added repository.
+Started working with JSON data from a temp folder. Added some basic wireframing in 
+Adobe Experience Designer, to be worked with later.
+
+Will print out the title of a simple working document to the screen.
+
+### Added
+- 
+- Wireframe base file.
+- Parsing of basic file, non-arbitrary file container.
+- Data Folder to hold basic data to work with.
+
+### Changed 
+
+- Modified README.
+- NoConsole rule in TSLint set to false.
+- App.tsx.
+
 
 ## [0.0.2] - 2018-09-19
 
@@ -23,4 +39,10 @@ Starting point where we can start fleshing out the architecture from.
 - TSLinting and TSConfig.
 - NPM project index.
 - Basic project structural outline in STRUCTURE.
+
+
+
+## [0.0.1] - 2018-09-14
+
+First commit, added repository.
 

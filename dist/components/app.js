@@ -13,16 +13,25 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var antd_1 = require("antd");
+var fs = require("fs");
 var React = require("react");
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
     function App(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        _this.state = {
+            json: _this.parseInputFilename("./data/testImageCaption.json")
+        };
+        return _this;
     }
     App.prototype.render = function () {
         return (React.createElement("div", null,
-            React.createElement(antd_1.Button, { id: "button", type: "primary" }, "Button Name")));
+            React.createElement("h1", null, this.state.json["Project Title"])));
+    };
+    App.prototype.parseInputFilename = function (filename) {
+        var fileText = fs.readFileSync(filename, "utf8");
+        var json = JSON.parse(fileText);
+        return json;
     };
     return App;
 }(React.Component));
