@@ -22,13 +22,13 @@
   "homepage": "https://github.com/ajamorrison/amaranthus#readme",
   "dependencies": {
     "@types/react": "^16.4.14",
-    "@types/react-dom": "^16.0.7",
-    "antd": "^3.9.2",
-    "electron": "^2.0.9",
+    "@types/react-dom": "^16.0.8",
+    "antd": "^3.9.3",
+    "electron": "^2.0.10",
     "electron-packager": "^12.1.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "tslint": "^5.11.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.1.1"
   }
 }

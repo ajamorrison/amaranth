@@ -20,7 +20,7 @@ var App = /** @class */ (function (_super) {
     function App(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {
-            json: _this.parseInputFilename("./data/testImageCaption.json")
+            json: _this.jsonFileToMap("./data/testImageCaption.json")
         };
         return _this;
     }
@@ -28,7 +28,7 @@ var App = /** @class */ (function (_super) {
         return (React.createElement("div", null,
             React.createElement("h1", null, this.state.json["Project Title"])));
     };
-    App.prototype.parseInputFilename = function (filename) {
+    App.prototype.jsonFileToMap = function (filename) {
         var fileText = fs.readFileSync(filename, "utf8");
         var json = JSON.parse(fileText);
         return json;

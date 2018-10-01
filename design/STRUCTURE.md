@@ -18,3 +18,7 @@ for the project.
 
 HTML page views. This project is designed to work as a single-page
 app that is dynamically loaded so might only be a general index file.
+
+## design/
+
+Design documents for the project, including wireframing and scoping.

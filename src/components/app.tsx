@@ -2,17 +2,17 @@ import { Button } from "antd";
 import fs = require("fs");
 import * as React from "react";
 
-interface IJSONProtocol {
+interface JSONProtocolInterface {
     "Project Title": string;
 }
 
-export default class App extends React.Component<{}, { json: IJSONProtocol }> {
+export default class App extends React.Component<{}, { json: JSONProtocolInterface }> {
 
     constructor(props: any) {
         super(props);
 
         this.state = {
-            json: this.parseInputFilename("./data/testImageCaption.json"),
+            json: this.jsonFileToMap("./data/testImageCaption.json"),
         };
     }
 
@@ -24,9 +24,9 @@ export default class App extends React.Component<{}, { json: IJSONProtocol }> {
             </div>);
     }
 
-    private parseInputFilename(filename: string) {
+    private jsonFileToMap(filename: string) {
         const fileText: string = fs.readFileSync(filename, "utf8");
-        const json: IJSONProtocol = JSON.parse(fileText);
+        const json: JSONProtocolInterface = JSON.parse(fileText);
 
         return json;
     }

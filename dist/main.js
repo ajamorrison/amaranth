@@ -10,7 +10,9 @@ function createWindow() {
         width: 800
     });
     mainWindow.setMenu(null);
+    // Get the webcontents of the window (ie all the html stuff) and open dev tools.
     mainWindow.webContents.openDevTools();
+    // Load in the main html file.
     mainWindow.loadFile(path.join(__dirname, "../views/index.html"));
     mainWindow.on("closed", function () {
         mainWindow = null;
@@ -26,6 +28,7 @@ electron_1.app.on("window-all-closed", function () {
         electron_1.app.quit();
     }
 });
+// Just to handle some weird dock behaviour for MacOS.
 electron_1.app.on("activate", function () {
     if (mainWindow === null) {
         createWindow();

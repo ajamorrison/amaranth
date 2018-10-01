@@ -14,8 +14,10 @@ function createWindow() {
 
     mainWindow.setMenu(null);
 
+    // Get the webcontents of the window (ie all the html stuff) and open dev tools.
     mainWindow.webContents.openDevTools();
 
+    // Load in the main html file.
     mainWindow.loadFile(path.join(__dirname, "../views/index.html"));
 
     mainWindow.on("closed", () => {
@@ -35,6 +37,7 @@ app.on("window-all-closed", () => {
     }
 });
 
+// Just to handle some weird dock behaviour for MacOS.
 app.on("activate", () => {
     if (mainWindow === null) {
         createWindow();
