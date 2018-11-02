@@ -1,6 +1,9 @@
 # List of Inputs
 
-## Text-based
+List of inputs. Keep in mind that many of the more specific classes
+can rely on more generic fallbacks.
+
+## Textual
 
 ### Title
 

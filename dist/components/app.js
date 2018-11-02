@@ -13,25 +13,56 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var fs = require("fs");
+var antd_1 = require("antd");
 var React = require("react");
+var Header = antd_1.Layout.Header, Content = antd_1.Layout.Content, Footer = antd_1.Layout.Footer, Sider = antd_1.Layout.Sider;
+var SubMenu = antd_1.Menu.SubMenu;
+var Search = antd_1.Input.Search;
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
-    function App(props) {
-        var _this = _super.call(this, props) || this;
+    function App() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
-            json: _this.jsonFileToMap("./data/testImageCaption.json")
+            collapsed: false
+        };
+        _this.onCollapse = function (collapsed) {
+            _this.setState({ collapsed: collapsed });
         };
         return _this;
     }
-    App.prototype.render = function () {
-        return (React.createElement("div", null,
-            React.createElement("h1", null, this.state.json["Project Title"])));
+    App.prototype.searchRequest = function (value) {
+        // TODO: send AJAX request to server for a list of documents
+        // Trigger a re-render on the client side or do it in the server
+        // again?
     };
-    App.prototype.jsonFileToMap = function (filename) {
-        var fileText = fs.readFileSync(filename, "utf8");
-        var json = JSON.parse(fileText);
-        return json;
+    App.prototype.render = function () {
+        return (React.createElement(antd_1.Layout, { style: { minHeight: "100vh" } },
+            React.createElement(Sider, { collapsible: true, collapsed: this.state.collapsed, onCollapse: this.onCollapse, theme: "light" },
+                React.createElement(Search, { placeholder: "input search text", onSearch: this.searchRequest, style: { padding: 5, width: "100%" } }),
+                React.createElement(antd_1.Menu, { theme: "light", defaultSelectedKeys: ["1"], mode: "inline" },
+                    React.createElement(antd_1.Menu.Item, { key: "1" },
+                        React.createElement(antd_1.Icon, { type: "pie-chart" }),
+                        React.createElement("span", null, "File")),
+                    React.createElement(antd_1.Menu.Item, { key: "2" },
+                        React.createElement(antd_1.Icon, { type: "desktop" }),
+                        React.createElement("span", null, "Documents")),
+                    React.createElement(SubMenu, { key: "sub1", title: React.createElement("span", null,
+                            React.createElement(antd_1.Icon, { type: "user" }),
+                            React.createElement("span", null, "User")) },
+                        React.createElement(antd_1.Menu.Item, { key: "3" }, "Tom"),
+                        React.createElement(antd_1.Menu.Item, { key: "4" }, "Bill"),
+                        React.createElement(antd_1.Menu.Item, { key: "5" }, "Alex")),
+                    React.createElement(SubMenu, { key: "sub2", title: React.createElement("span", null,
+                            React.createElement(antd_1.Icon, { type: "team" }),
+                            React.createElement("span", null, "Team")) },
+                        React.createElement(antd_1.Menu.Item, { key: "6" }, "Team 1"),
+                        React.createElement(antd_1.Menu.Item, { key: "8" }, "Team 2")),
+                    React.createElement(antd_1.Menu.Item, { key: "9" },
+                        React.createElement(antd_1.Icon, { type: "file" }),
+                        React.createElement("span", null, "File")))),
+            React.createElement(antd_1.Layout, null,
+                React.createElement(Content, { style: { margin: "0 16px" } },
+                    React.createElement("p", null, "Serialises a simple json object with name.")))));
     };
     return App;
 }(React.Component));

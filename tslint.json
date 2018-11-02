@@ -6,7 +6,6 @@
                 120
             ]
         },
-        "no-console": false,
         "interface-name": [
             true,
             "never-prefix"

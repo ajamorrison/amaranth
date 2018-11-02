@@ -1,34 +1,48 @@
 {
-  "name": "amaranthus",
-  "version": "0.0.1",
-  "description": "Database and interface for visual data.",
-  "main": "main.js",
-  "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "prod": "electron-packager . amaranthus-app --all  --out=bin",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "npm run build && electron ./dist/main.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ajamorrison/amaranthus.git"
-  },
-  "author": "AJA Morrison",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ajamorrison/amaranthus/issues"
-  },
-  "homepage": "https://github.com/ajamorrison/amaranthus#readme",
-  "dependencies": {
-    "@types/react": "^16.4.14",
-    "@types/react-dom": "^16.0.8",
-    "antd": "^3.9.3",
-    "electron": "^2.0.10",
-    "electron-packager": "^12.1.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "tslint": "^5.11.0",
-    "typescript": "^3.1.1"
-  }
+    "name": "amaranthus",
+    "version": "0.0.4",
+    "description": "Efficient JSON data serialisation",
+    "keywords": [
+        "JSON",
+        "interface"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ajamorrison/amaranthus.git"
+    },
+    "homepage": "https://github.com/ajamorrison/amaranthus#readme",
+    "bugs": {
+        "url": "https://github.com/ajamorrison/amaranthus/issues"
+    },
+    "author": "AJA Morrison",
+    "dependencies": {
+        "@types/react": "^16.4.18",
+        "@types/react-dom": "^16.0.9",
+        "@types/react-router-dom": "^4.3.1",
+        "antd": "^3.10.3",
+        "express": "^4.16.4",
+        "opn": "^5.4.0",
+        "pretty": "^2.0.0",
+        "prompt": "^1.0.0",
+        "react": "^16.6.0",
+        "react-dom": "^16.6.0",
+        "react-router-dom": "^4.3.1",
+        "tslint": "^5.11.0",
+        "typescript": "^3.1.4",
+        "webpack": "^4.23.1"
+    },
+    "main": "dist/main.js",
+    "engines": {
+        "node": ">= 0.4.1"
+    },
+    "scripts": {
+        "build": "tsc --skipLibCheck && webpack -p",
+        "start": "node ./dist/main.js"
+    },
+    "devDependencies": {
+        "@types/express": "^4.16.0",
+        "@types/opn": "^5.1.0",
+        "webpack-cli": "^3.1.2"
+    },
+    "proxy": "http://localhost:9595"
 }
