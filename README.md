@@ -67,7 +67,7 @@ easily? How might we store this information easily and quickly.
 2. Flexible, requiring as little upkeep as possible.
 3. Open and transparent, avoid data lock-in using flat file.
 
-![Field Input](design/JSON_format.png "Field Input Design")
+![JSON](design/JSON.png "JSON field structure")
 
 ## PRIORITIES
 
