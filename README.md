@@ -46,7 +46,7 @@ Single Page Applications, React, and AJAX.
 
 ## DESIGN
 
-![Field Input](design/Field_Input.png "Field Input Design")
+![Field Input](design/Input.png "Field Input Design")
 
 ![Document Input](design/Document_Input.png "Document Input Design")
 
