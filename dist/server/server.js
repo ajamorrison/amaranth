@@ -13,9 +13,9 @@ var Server = /** @class */ (function () {
     function Server(port) {
         var _this = this;
         process.stdout.write("Server initialised at " + port.toString() + "\n");
-        process.stdout.write("Prerendering entry page");
         var reactDom = server_1.renderToString(React.createElement(app_1["default"], null));
         fs.readFile(process.cwd() + "/views/index.html", "utf8", function (err, data) {
+            process.stdout.write("Prerendering entry page...\n");
             _this.data = data;
             _this.data = _this.data.replace("$app", reactDom);
         });

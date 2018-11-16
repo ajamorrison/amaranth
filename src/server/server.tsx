@@ -1,7 +1,9 @@
 import * as express from "express";
 import * as fs from "fs";
+import * as path from "path";
 import * as React from "react";
 import { renderToString } from "react-dom/server";
+import * as Favicon from "serve-favicon";
 import App from "../components/app";
 import RequestHandler from "./requestHandler";
 
@@ -18,11 +20,10 @@ export default class Server {
 
         process.stdout.write("Server initialised at " + port.toString() + "\n");
 
-        process.stdout.write("Prerendering entry page");
-
         const reactDom = renderToString(<App />);
 
         fs.readFile(process.cwd() + "/views/index.html", "utf8", (err, data) => {
+            process.stdout.write("Prerendering entry page...\n");
             this.data = data;
             this.data = this.data.replace("$app", reactDom);
         });

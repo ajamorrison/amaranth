@@ -5,12 +5,14 @@ import {
     NavLink,
     Route,
 } from "react-router-dom";
+import Doc from "./doc";
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const Search = Input.Search;
 
 export default class App extends React.Component {
+
     public state = {
         collapsed: false,
     };
@@ -58,20 +60,25 @@ export default class App extends React.Component {
                             </SubMenu>
                             <SubMenu
                                 key="sub2"
-                                title={<span><Icon type="team" /><span>Team</span></span>}
+                                title={<span><Icon type="stock"/><span>Data</span></span>}
                             >
-                                <Menu.Item key="6">Team 1</Menu.Item>
-                                <Menu.Item key="8">Team 2</Menu.Item>
+                                <Menu.Item key="6"><Icon type="pie-chart" />Pie Chart</Menu.Item>
+                                <Menu.Item key="7"><Icon type="bar-chart" />Bar Chart</Menu.Item>
+                                <Menu.Item key="8"><Icon type="dot-chart" />Scatterplot</Menu.Item>
+                                <Menu.Item key="9"><Icon type="line-chart" />Line Chart</Menu.Item>
+                                <Menu.Item key="10"><Icon type="radar-chart" />Radar Chart</Menu.Item>
                             </SubMenu>
-                            <Menu.Item key="9">
-                                <Icon type="file" />
-                                <span>File</span>
+                            <Menu.Item key="11">
+                                <Icon type="setting" />
+                                <span>Options</span>
                             </Menu.Item>
                         </Menu>
                     </Sider>
                     <Layout>
-                        <Content style={{ margin: "0 16px" }}>
-                        <p>Serialises a simple json object with name.</p>
+                        <Content style={{ margin: "16px" }}>
+                            <Doc name="hello" type="hello">
+
+                            </Doc>
                         </Content>
                     </Layout>
                 </Layout>

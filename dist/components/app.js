@@ -15,6 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var antd_1 = require("antd");
 var React = require("react");
+var doc_1 = require("./doc");
 var Header = antd_1.Layout.Header, Content = antd_1.Layout.Content, Footer = antd_1.Layout.Footer, Sider = antd_1.Layout.Sider;
 var SubMenu = antd_1.Menu.SubMenu;
 var Search = antd_1.Input.Search;
@@ -53,16 +54,29 @@ var App = /** @class */ (function (_super) {
                         React.createElement(antd_1.Menu.Item, { key: "4" }, "Bill"),
                         React.createElement(antd_1.Menu.Item, { key: "5" }, "Alex")),
                     React.createElement(SubMenu, { key: "sub2", title: React.createElement("span", null,
-                            React.createElement(antd_1.Icon, { type: "team" }),
-                            React.createElement("span", null, "Team")) },
-                        React.createElement(antd_1.Menu.Item, { key: "6" }, "Team 1"),
-                        React.createElement(antd_1.Menu.Item, { key: "8" }, "Team 2")),
-                    React.createElement(antd_1.Menu.Item, { key: "9" },
-                        React.createElement(antd_1.Icon, { type: "file" }),
-                        React.createElement("span", null, "File")))),
+                            React.createElement(antd_1.Icon, { type: "stock" }),
+                            React.createElement("span", null, "Data")) },
+                        React.createElement(antd_1.Menu.Item, { key: "6" },
+                            React.createElement(antd_1.Icon, { type: "pie-chart" }),
+                            "Pie Chart"),
+                        React.createElement(antd_1.Menu.Item, { key: "7" },
+                            React.createElement(antd_1.Icon, { type: "bar-chart" }),
+                            "Bar Chart"),
+                        React.createElement(antd_1.Menu.Item, { key: "8" },
+                            React.createElement(antd_1.Icon, { type: "dot-chart" }),
+                            "Scatterplot"),
+                        React.createElement(antd_1.Menu.Item, { key: "9" },
+                            React.createElement(antd_1.Icon, { type: "line-chart" }),
+                            "Line Chart"),
+                        React.createElement(antd_1.Menu.Item, { key: "10" },
+                            React.createElement(antd_1.Icon, { type: "radar-chart" }),
+                            "Radar Chart")),
+                    React.createElement(antd_1.Menu.Item, { key: "11" },
+                        React.createElement(antd_1.Icon, { type: "setting" }),
+                        React.createElement("span", null, "Options")))),
             React.createElement(antd_1.Layout, null,
-                React.createElement(Content, { style: { margin: "0 16px" } },
-                    React.createElement("p", null, "Serialises a simple json object with name.")))));
+                React.createElement(Content, { style: { margin: "16px" } },
+                    React.createElement(doc_1["default"], { name: "hello", type: "hello" })))));
     };
     return App;
 }(React.Component));
