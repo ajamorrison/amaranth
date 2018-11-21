@@ -1,11 +1,7 @@
 import * as express from "express";
-import * as fs from "fs";
-import * as path from "path";
-import * as React from "react";
-import { renderToString } from "react-dom/server";
-import * as Favicon from "serve-favicon";
-import App from "../components/app";
-import RequestHandler from "./requestHandler";
+import DBClient from "../database/dbClient";
+import log from "../lambda/logger";
+import Renderer from "./renderer";
 
 /**
  * The server component that handles routing and requests from a macro level.
@@ -15,18 +11,13 @@ export default class Server {
     private port: number;
     private app: express.Application;
     private data: string;
+    private renderer: Renderer;
+    private dbClient: DBClient;
 
     constructor(port: number) {
 
-        process.stdout.write("Server initialised at " + port.toString() + "\n");
-
-        const reactDom = renderToString(<App />);
-
-        fs.readFile(process.cwd() + "/views/index.html", "utf8", (err, data) => {
-            process.stdout.write("Prerendering entry page...\n");
-            this.data = data;
-            this.data = this.data.replace("$app", reactDom);
-        });
+        this.renderer = new Renderer();
+        this.dbClient = new DBClient("./data");
 
         this.port = port;
         this.app = express();
@@ -34,11 +25,10 @@ export default class Server {
         this.app.listen(this.port);
         this.app.use(express.static("."));
 
+        log("Initialised server", "server");
+
         this.app.get("*", (req, res) => {
-
-            const handler = new RequestHandler(req);
-
-            res.send(this.data);
+            res.send(this.renderer.getPage());
         });
 
         this.app.post("/send", (req, res) => {

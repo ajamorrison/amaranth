@@ -13,8 +13,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var antd_1 = require("antd");
 var React = require("react");
+var semantic_ui_react_1 = require("semantic-ui-react");
 /** Displays the content of a single
  * document in the interface.
  */
@@ -24,8 +24,16 @@ var Doc = /** @class */ (function (_super) {
         return _super.call(this, props) || this;
     }
     Doc.prototype.render = function () {
-        return (React.createElement(antd_1.Card, { title: "Card title", style: { width: 300 } },
-            React.createElement("p", null, "Lorem Ipsum sit dolar amet.")));
+        return (React.createElement(semantic_ui_react_1.Card, null,
+            React.createElement(semantic_ui_react_1.Card.Content, null,
+                React.createElement(semantic_ui_react_1.Card.Header, null, "Matthew"),
+                React.createElement(semantic_ui_react_1.Card.Meta, null,
+                    React.createElement("span", { className: "date" }, "Joined in 2015")),
+                React.createElement(semantic_ui_react_1.Card.Description, null, "Matthew is a musician living in Nashville.")),
+            React.createElement(semantic_ui_react_1.Card.Content, { extra: true },
+                React.createElement("a", null,
+                    React.createElement(semantic_ui_react_1.Icon, { name: "user" }),
+                    "22 Friends"))));
     };
     return Doc;
 }(React.Component));

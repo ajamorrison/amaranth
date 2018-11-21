@@ -15,7 +15,7 @@ export default class DBClient {
 
                 path.parse(path + file.toString());
 
-                process.stdout.write("DB Instance created of: " + file.toString() + "\n");
+                process.stdout.write("DB | Instance Created: " + file.toString() + "\n");
             });
         });
     }
