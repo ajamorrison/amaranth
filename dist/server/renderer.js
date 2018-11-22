@@ -4,12 +4,13 @@ var fs = require("fs");
 var React = require("react");
 var server_1 = require("react-dom/server");
 var app_1 = require("../components/app");
-var Renderer = /** @class */ (function () {
+var logger_1 = require("../lambda/logger");
+var Renderer = (function () {
     function Renderer() {
         var _this = this;
-        fs.readFile(process.cwd() + "/views/index.html", "utf8", function (err, data) {
+        fs.readFile(process.cwd() + "/views/index.html", "utf8", function (error, data) {
             _this.baseTemplate = data;
-            process.stdout.write("SSR | Base template rendered.\n");
+            logger_1["default"]("Initial page render", "SSR");
         });
     }
     Renderer.prototype.getPage = function () {

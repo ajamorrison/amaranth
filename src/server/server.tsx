@@ -17,7 +17,7 @@ export default class Server {
     constructor(port: number) {
 
         this.renderer = new Renderer();
-        this.dbClient = new DBClient("./data");
+        this.dbClient = new DBClient("\\data");
 
         this.port = port;
         this.app = express();
@@ -25,16 +25,14 @@ export default class Server {
         this.app.listen(this.port);
         this.app.use(express.static("."));
 
-        log("Initialised server", "server");
+        log("Initialised server on port " + this.port.toString(), "server");
 
-        this.app.get("*", (req, res) => {
+        this.app.get("/", (req, res) => {
             res.send(this.renderer.getPage());
         });
 
-        this.app.post("/send", (req, res) => {
-            process.stdout.write("Submitted form data");
-            res.sendStatus(200);
+        this.app.get("/send", (req, res) => {
+            res.send(this.renderer.getPage());
         });
-
     }
 }

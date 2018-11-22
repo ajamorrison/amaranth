@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as React from "react";
 import { renderToString } from "react-dom/server";
 import App from "../components/app";
+import log from "../lambda/logger";
 
 export default class Renderer {
 
@@ -9,9 +10,9 @@ export default class Renderer {
     private entryPoint: string;
 
     constructor() {
-        fs.readFile(process.cwd() + "/views/index.html", "utf8", (err, data) => {
+        fs.readFile(process.cwd() + "/views/index.html", "utf8", (error, data) => {
             this.baseTemplate = data;
-            process.stdout.write("SSR | Base template rendered.\n");
+            log("Initial page render", "SSR");
         });
     }
 

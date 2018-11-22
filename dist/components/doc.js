@@ -15,10 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var React = require("react");
 var semantic_ui_react_1 = require("semantic-ui-react");
-/** Displays the content of a single
- * document in the interface.
- */
-var Doc = /** @class */ (function (_super) {
+var Doc = (function (_super) {
     __extends(Doc, _super);
     function Doc(props) {
         return _super.call(this, props) || this;

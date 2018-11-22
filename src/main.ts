@@ -3,8 +3,11 @@ import fs = require("fs");
 import opn = require("opn");
 import os = require("os");
 import * as readline from "readline";
-import DBClient from "./database/dbClient";
+import log from "./lambda/logger";
 import Server from "./server/server";
+
+
+log("Process Started", "process");
 
 // Create a new server object to handle server requests.
 const server: Server = new Server(9595);

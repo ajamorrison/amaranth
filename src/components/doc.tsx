@@ -29,7 +29,7 @@ export default class Doc extends React.Component<{
                     <a>
                         <Icon name="user" />
                         22 Friends
-      </a>
+                    </a>
                 </Card.Content>
             </Card>
         );

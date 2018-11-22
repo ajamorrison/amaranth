@@ -1,8 +1,7 @@
 "use strict";
 exports.__esModule = true;
+var logger_1 = require("./lambda/logger");
 var server_1 = require("./server/server");
-// Create a new server object to handle server requests.
+logger_1["default"]("Process Started", "process");
 var server = new server_1["default"](9595);
-// Open a new tab in browser and display the contents.
-// opn("http://localhost:" + port.toString());
 //# sourceMappingURL=main.js.map
