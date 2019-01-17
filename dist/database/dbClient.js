@@ -1,32 +1,27 @@
 "use strict";
 exports.__esModule = true;
 var fs = require("fs");
-var path = require("path");
 var logger_1 = require("../lambda/logger");
+var dbFile_1 = require("./dbFile");
 var DBClient = (function () {
-    function DBClient(pathname) {
+    function DBClient(diskPath) {
+        this.fileList = new Array();
+        this.buildFiles(diskPath);
+    }
+    DBClient.prototype.buildFiles = function (path) {
         var _this = this;
-        this.directoryPath = process.cwd() + pathname;
-        this.data = new Map();
-        logger_1["default"]("Creating DB from folder " + this.directoryPath, "DB");
-        fs.readdir(this.directoryPath, function (err, files) {
-            files.forEach(function (file) {
-                path.parse(path + file.toString());
-                if (file.endsWith(".json")) {
-                    fs.readFile(_this.directoryPath + "\\" + file, "utf8", function (error, JSONdata) {
-                        _this.data.set(file, JSON.parse(JSONdata));
-                        logger_1["default"]("JSON Instance Created of " + file, "DB");
-                    });
-                }
-                else {
-                    logger_1["default"]("Generic instance created of " + file, "DB");
+        if (fs.lstatSync(path).isDirectory()) {
+            logger_1["default"]("Iterating through directory " + path, "db");
+            fs.readdir(path, function (err, items) {
+                for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
+                    var item = items_1[_i];
+                    _this.buildFiles(path + "/" + item);
                 }
             });
-        });
-    }
-    DBClient.prototype.get = function (id, key) {
-        var obj = this.data.get(id);
-        return obj[key];
+        }
+        else {
+            this.fileList.push(new dbFile_1["default"](path));
+        }
     };
     return DBClient;
 }());

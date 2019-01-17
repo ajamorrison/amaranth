@@ -3,6 +3,7 @@ import * as React from "react";
 import { renderToString } from "react-dom/server";
 import App from "../components/app";
 import log from "../lambda/logger";
+import AppState from "./appState";
 
 export default class Renderer {
 
@@ -10,14 +11,14 @@ export default class Renderer {
     private entryPoint: string;
 
     constructor() {
-        fs.readFile(process.cwd() + "/views/index.html", "utf8", (error, data) => {
+        fs.readFile("D:\\amaranthus\\views\\index.html", "utf8", (error, data) => {
             this.baseTemplate = data;
-            log("Initial page render", "SSR");
+            log("Initial page render", "ssr");
         });
     }
 
-    public getPage() {
-        const reactDom = renderToString(<App />);
+    public getPage(appState?: AppState) {
+        const reactDom = renderToString(<App appState={appState}/>);
         return this.baseTemplate.replace("$app", reactDom);
     }
 }

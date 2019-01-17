@@ -8,13 +8,13 @@ var logger_1 = require("../lambda/logger");
 var Renderer = (function () {
     function Renderer() {
         var _this = this;
-        fs.readFile(process.cwd() + "/views/index.html", "utf8", function (error, data) {
+        fs.readFile("D:\\amaranthus\\views\\index.html", "utf8", function (error, data) {
             _this.baseTemplate = data;
-            logger_1["default"]("Initial page render", "SSR");
+            logger_1["default"]("Initial page render", "ssr");
         });
     }
-    Renderer.prototype.getPage = function () {
-        var reactDom = server_1.renderToString(React.createElement(app_1["default"], null));
+    Renderer.prototype.getPage = function (appState) {
+        var reactDom = server_1.renderToString(React.createElement(app_1["default"], { appState: appState }));
         return this.baseTemplate.replace("$app", reactDom);
     };
     return Renderer;

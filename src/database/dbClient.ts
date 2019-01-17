@@ -1,47 +1,42 @@
 import * as fs from "fs";
-import * as path from "path";
 import log from "../lambda/logger";
+import DBFile from "./dbFile";
 
+/**
+ * Handles all DB interactions, including caching and search passes.
+ */
 export default class DBClient {
 
-    public data: Map<string, object>;
+    public fileList: DBFile[];
 
-    private directoryPath: string;
+    /**
+     * Takes in a folder or single file, and passes
+     * over it, invoking the DB node constructor on
+     * each JSON file instance.
+     *
+     * @param diskPath Absolute path to file/directory object on user's disk.
+     */
+    public constructor(diskPath: string) {
 
-    public constructor(pathname: string) {
+        this.fileList = new Array<DBFile>();
 
-        this.directoryPath = process.cwd() + pathname;
-        this.data = new Map();
-
-        log("Creating DB from folder " + this.directoryPath, "DB");
-
-        fs.readdir(this.directoryPath, (err, files) => {
-            files.forEach((file) => {
-
-                path.parse(path + file.toString());
-
-                if (file.endsWith(".json")) {
-
-                    // File is in JSON format, therefore package into a DB object so we
-                    // can index it and stuff.
-
-                    fs.readFile(this.directoryPath + "\\" + file, "utf8", (error, JSONdata) => {
-                        this.data.set(file, JSON.parse(JSONdata));
-
-                        log("JSON Instance Created of " + file, "DB");
-                    });
-
-                } else {
-                    log("Generic instance created of " + file, "DB");
-                }
-
-            });
-        });
+        this.buildFiles(diskPath);
     }
 
-    public get(id: string, key: string): any {
-        const obj: object =  this.data.get(id);
+    public buildFiles(path: string) {
 
-        return (obj as any)[key];
+        if (fs.lstatSync(path).isDirectory()) {
+
+            log("Iterating through directory " + path, "db");
+            // pass over direcotry objects.
+            fs.readdir(path, (err, items) => {
+                for (const item of items) {
+                    // Recursively pass through each subdirectory
+                    this.buildFiles(path + "/" + item);
+                }
+            });
+        } else {
+            this.fileList.push(new DBFile(path));
+        }
     }
 }

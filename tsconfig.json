@@ -1,10 +1,11 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "allowJs": true,
         "removeComments": true,
         "sourceMap": true,
+        
         "outDir": "dist",
         "jsx": "react",
         "lib": [
